@@ -8,11 +8,19 @@ public class Main {
         int[] b = {3, 6, 9};
         int[] c = {1, 5, 7};
 
-        Concumer concumer = new Concumer();
+        Consumer consumer = new Consumer();
 
-        Kubator x = new Kubator(a);
-        Kvadrator y = new Kvadrator(b);
-        Simpler z = new Simpler(c);
+        for (int i = 0; i < a.length; i++) {
+            new Kubator(a[i]);
+        }
+
+        for (int i = 0; i < b.length; i++) {
+            new Kvadrator(b[i]);
+        }
+
+        for (int i = 0; i < c.length; i++) {
+            new Simpler(c[i]);
+        }
 
     }
 }

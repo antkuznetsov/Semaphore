@@ -4,18 +4,29 @@ package ru.innopolis;
  * Created by Kuznetsov on 07/04/2017.
  */
 
-public class Kvadrator {
+public class Kvadrator implements Runnable {
 
-    private Concumer concumer = new Concumer();
+    private Consumer consumer = new Consumer();
+    private int val;
 
-    public Kvadrator(int[] arrNum) {
+    Thread t = new Thread(this, "Kvadrator");
 
-        for (int num: arrNum) {
+    public Kvadrator(int num) {
 
-            concumer.met(0, arrNum[0],0);
+        this.val = num * num;
 
-        }
+        t.start(); // Стартуем поток
 
     }
 
+    @Override
+    public synchronized void run() {
+
+        try {
+            consumer.met(0, this.val, 0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
