@@ -6,13 +6,14 @@ package ru.innopolis;
 
 public class Kubator implements Runnable {
 
-    private Consumer consumer = new Consumer();
+    private Consumer consumer;
     private int val;
 
     Thread t = new Thread(this, "Kubator");
 
-    public Kubator(int num) {
+    public Kubator(int num, Consumer consumer) {
 
+        this.consumer = consumer;
         this.val = num * num * num;
 
         t.start(); // Стартуем поток
@@ -20,13 +21,9 @@ public class Kubator implements Runnable {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
 
-        try {
-            consumer.met(this.val, 0, 0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        consumer.met(this.val, 0, 0);
 
     }
 }

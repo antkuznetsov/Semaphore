@@ -6,13 +6,14 @@ package ru.innopolis;
 
 public class Simpler implements Runnable {
 
-    private Consumer consumer = new Consumer();
+    private Consumer consumer;
     private int val;
 
     Thread t = new Thread(this, "Simpler");
 
-    public Simpler(int num) {
+    public Simpler(int num, Consumer consumer) {
 
+        this.consumer = consumer;
         this.val = num;
 
         t.start(); // Стартуем поток
@@ -20,13 +21,9 @@ public class Simpler implements Runnable {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
 
-        try {
-            consumer.met(0, 0, this.val);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        consumer.met(0, 0, this.val);
 
     }
 }

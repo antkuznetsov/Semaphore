@@ -1,5 +1,7 @@
 package ru.innopolis;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -11,16 +13,15 @@ public class Main {
         Consumer consumer = new Consumer();
 
         for (int i = 0; i < a.length; i++) {
-            new Kubator(a[i]);
+            new Kubator(a[i], consumer);
         }
 
         for (int i = 0; i < b.length; i++) {
-            new Kvadrator(b[i]);
+            new Kvadrator(b[i], consumer);
         }
 
         for (int i = 0; i < c.length; i++) {
-            new Simpler(c[i]);
+            new Simpler(c[i], consumer);
         }
-
     }
 }

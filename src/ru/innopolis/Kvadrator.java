@@ -6,13 +6,14 @@ package ru.innopolis;
 
 public class Kvadrator implements Runnable {
 
-    private Consumer consumer = new Consumer();
+    private Consumer consumer;
     private int val;
 
     Thread t = new Thread(this, "Kvadrator");
 
-    public Kvadrator(int num) {
+    public Kvadrator(int num, Consumer consumer) {
 
+        this.consumer = consumer;
         this.val = num * num;
 
         t.start(); // Стартуем поток
@@ -20,13 +21,9 @@ public class Kvadrator implements Runnable {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
 
-        try {
-            consumer.met(0, this.val, 0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        consumer.met(0, this.val, 0);
 
     }
 }
